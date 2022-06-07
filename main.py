@@ -3,42 +3,37 @@ import numpy as np
 import matplotlib.pyplot as plt
 from tkinter import *
 from PIL import ImageTk,Image
+import diffusionprofile as dp
+import pandas as pd
 
-'''
-num = np.exp(3)
-print(num)
-xs = np.linspace(0,100,101)
-ys = xs**2
-plt.plot(xs,ys)
-plt.show()
-'''
-
-def graph():
-    price = np.random.normal(200000, 25000,1000)
-    plt.hist(price, 20)
-    plt.show()
-
-def recalVals():
-    return 0
-
+def printDeffVal():
+    temp = float(e_1.get())
+    dab = dp.Deff(temp)
+    deffText.set(f'{dab:.4f} cm^2/s')
 
 root = Tk()
-root.geometry("600x600")
+root.geometry("300x300")
 
 
 labelText=StringVar()
 labelText.set("Temperature (K): ")
-labelDir=Label(root, textvariable=labelText,heigh=4)
-labelDir.pack(side="left")
+labelDir=Label(root, textvariable=labelText)
+labelDir.place(x=0,y=0)
 
-e1 = Entry(root, width=8, bg="white", fg="black")
-e1.pack(side="left")
+e_1 = Entry(root, width=8, bg="white", fg="black", textvariable='0')
+e_1.place(x=100,y=0)
 
 
-but1 = Button(root, text="graph me", command=graph)
-but1.place(anchor=CENTER)
-but1.pack()
+but_1 = Button(root, text="Get D_ab", command=printDeffVal)
+but_1.place(x=0,y=20)
 
+deffText = StringVar()
+deffText.set("0.0000 cm^2/s")
+labelDeff = Label(root, textvariable=deffText)
+labelDeff.place(x=42,y=60)
+
+deffLab = Label(root, text='D_eff =')
+deffLab.place(x=0,y=60)
 
 root.mainloop()
 

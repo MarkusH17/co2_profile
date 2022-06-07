@@ -1,3 +1,4 @@
+#returns diffusion coefficient in cm^2/s
 import numpy as np
 
 #parameters, from [1]

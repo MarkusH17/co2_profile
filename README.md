@@ -12,3 +12,4 @@ A mathematical model for CO2 dispersion in a greenhouse is created using basic m
 * Steady-state
 * Pressure effects are negligible
 * Modeled by a reactive and non-reactive zone
+* Homogeneity by layer

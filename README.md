@@ -4,5 +4,5 @@ A mathematical model for CO2 dispersion in a greenhouse is created using basic m
 
 ## Requirements
 * Have Python 3.10+
-* Run `pip3 install -r requirements.txt`
+* Run `pip install -r requirements.txt`
 * Run `main.py`

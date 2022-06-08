@@ -1,6 +1,6 @@
 # CO2 Profile for model greenhouse
 
-A mathematical model for CO2 dispersion in a greenhouse is created using basic mass transport concepts. 
+A simplified mathematical model for CO2 dispersion in a greenhouse is created using basic mass transport concepts. 
 
 ## Requirements
 * Have Python 3.10+
@@ -13,3 +13,4 @@ A mathematical model for CO2 dispersion in a greenhouse is created using basic m
 * Pressure effects are negligible
 * Modeled by a reactive and non-reactive zone
 * Homogeneity by layer
+* Ignore local effects of heat and momentum transfer

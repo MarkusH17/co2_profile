@@ -21,8 +21,9 @@ def plantZ():
     airchanges = float(e_ac.get())
 
     plantParams = cons.C_plants(Cin, area, height, airchanges, intake)
-    volText.set(f'{plantParams[1]:.4f} m^3')
     cplText.set(f'{plantParams[0]:.4f} ppm')
+    volText.set(f'{plantParams[1]:.4f} m^3')
+    velText.set(f'{plantParams[2]:.4f} m/s')
     return None
 
 #init
@@ -126,6 +127,16 @@ labelCpl.place(x=60,y=300)
 #Cplant label
 cplLab = Label(root, text='C_plant =')
 cplLab.place(x=0,y=300)
+
+#velocity output
+velText = StringVar()
+velText.set("0.0000 m/s")
+labelVel= Label(root, textvariable=velText)
+labelVel.place(x=60,y=320)
+
+#velocitylabel
+velLab = Label(root, text='Velocity =')
+velLab.place(x=0,y=320)
 
 root.mainloop()
 

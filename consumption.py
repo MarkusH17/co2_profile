@@ -14,7 +14,7 @@ def C_plants(C_in, area, height, airchanges, intake):
 
     vol = area*height
 
-    vin = airchanges*vol/3600
+    vin = airchanges*vol/3600 #m3/s
 
     mol_in = vin*(C_in/1e6)/mol_vol #kmol/s
 
@@ -28,4 +28,6 @@ def C_plants(C_in, area, height, airchanges, intake):
 
     C_plant = mol_out*mol_vol*1e6/vin 
 
-    return C_plant, vol, 
+    velocity = vin/area #m/s
+
+    return C_plant, vol, velocity

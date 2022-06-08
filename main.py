@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 from tkinter import *
 from PIL import ImageTk,Image
 import diffusionprofile as dp
+import consumption as cons
 import pandas as pd
 
 def printDeffVal():

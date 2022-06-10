@@ -1,4 +1,5 @@
 #returns diffusion coefficient in cm^2/s
+#Chapman-Enskog Theory
 import numpy as np
 
 #parameters, from [1]

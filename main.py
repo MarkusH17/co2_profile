@@ -1,4 +1,5 @@
 #import directories
+from urllib.parse import _NetlocResultMixinStr
 import numpy as np
 import matplotlib.pyplot as plt
 from tkinter import *
@@ -8,12 +9,22 @@ import consumption as cons
 import pandas as pd
 
 def printDeffVal():
+
+    if e_temper.get() == '':
+        deffText.set("Error: Input a number")
+        raise ValueError("Invalid input")
+
     temp = float(e_temper.get())
     dab = dp.Deff(temp)
     deffText.set(f'{dab:.4f} cm^2/s')
     return None
 
 def plantZ():
+
+    if ((e_ac.get() or e_cin.get() or e_area.get() or e_height.get() or e_con.get()) == ''):
+        plerrorText.set('Please fill in all fields')
+        raise ValueError("Invalid input")
+
     Cin = float(e_cin.get())
     area = float(e_area.get())
     height = float(e_height.get())
@@ -24,6 +35,11 @@ def plantZ():
     cplText.set(f'{plantParams[0]:.4f} ppm')
     volText.set(f'{plantParams[1]:.4f} m^3')
     velText.set(f'{plantParams[2]:.4f} m/s')
+    plerrorText.set('')
+    return None
+
+def plot():
+
     return None
 
 #init
@@ -137,6 +153,16 @@ labelVel.place(x=60,y=320)
 #velocitylabel
 velLab = Label(root, text='Velocity =')
 velLab.place(x=0,y=320)
+
+#plant param error label
+
+plerrorText = StringVar()
+plerrorText.set('')
+labelPLError = Label(root, textvariable=plerrorText)
+labelPLError.place(x=0,y=340)
+#graph button
+but_Graph = Button(root, text="Plot!", command=plot)
+but_Graph.place(x=180,y=20)
 
 root.mainloop()
 

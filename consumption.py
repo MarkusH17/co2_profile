@@ -6,8 +6,6 @@
 
 mol_vol = 22.4 #m^3/kmol
 MWco2 = 44.01 #kg/kmol
-
-plant_height = 1.5 #m
 intake = 2.5 #g/m2-hr
 
 def C_plants(C_in, area, height, airchanges, intake):

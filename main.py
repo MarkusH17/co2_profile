@@ -1,10 +1,8 @@
 #import directories
-from calendar import c
-from urllib.parse import _NetlocResultMixinStr
+
 import numpy as np
 import matplotlib as mpl
 from tkinter import *
-from PIL import ImageTk,Image
 import diffusionprofile as dp
 import consumption as cons
 import pandas as pd
@@ -69,6 +67,17 @@ def plot():
     canvas.get_tk_widget().place(x=250,y=40)
     return None
 
+def plotNonSt():
+    fig = mpl.figure.Figure(figsize=(5,4))
+    Cplant = float(e_plh.get())
+    Cins = float(e_cin.get())
+    ht = float(e_height.get())
+    xs1 = np.linspace(0,Cplant,int(Cplant*100+1))
+    ys1 = np.linspace(Cins, globalHold[0], (len(xs1)))
+
+    
+    return None
+
 #init
 root = Tk()
 root.geometry("800x550")
@@ -98,7 +107,7 @@ deffLab = Label(root, text='D_eff =')
 deffLab.place(x=0,y=60)
 
 #plant button
-but_2 = Button(root, text="Calculate Plant-zone parameters", command=plantZ)
+but_2 = Button(root, text="Calculate parameters", command=plantZ)
 but_2.place(x=0, y=250)
 
 #plant height entry
@@ -197,9 +206,14 @@ plerrorText = StringVar()
 plerrorText.set('')
 labelPLError = Label(root, textvariable=plerrorText)
 labelPLError.place(x=0,y=340)
+
 #graph button
 but_Graph = Button(root, text="Stn Media Approx", command=plot)
-but_Graph.place(x=200,y=20)
+but_Graph.place(x=200,y=10)
+
+#graph button
+but_Graph = Button(root, text="Nonstn Media", command=plotNonSt)
+but_Graph.place(x=260,y=10)
 
 root.mainloop()
 

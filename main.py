@@ -8,7 +8,7 @@ import diffusionprofile as dp
 import consumption as cons
 import pandas as pd
 import math as math
-from matplotlib.backends.backend_tkagg import (FigureCanvasTkAgg, NavigationToolbar2Tk)
+from matplotlib.backends.backend_tkagg import (FigureCanvasTkAgg)
 
 def printDeffVal():
 
@@ -76,7 +76,7 @@ def plot():
     plot1.plot(xs,ys)
     plot1.set_xlabel('Height (m)')
     plot1.set_ylabel('ppm CO2')
-    plot1.set_title('Stationary Media Approximation')
+    plot1.set_title('Stationary Medium')
     
     canvas = FigureCanvasTkAgg(fig, master = root)
     canvas.draw()

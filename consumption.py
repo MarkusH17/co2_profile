@@ -3,29 +3,30 @@
 
 #parameters
 
+import numpy as np
 
 mol_vol = 22.4 #m^3/kmol
 MWco2 = 44.01 #kg/kmol
-intake = 2.5 #g/m2-hr
-
-def C_plants(C_in, area, height, airchanges, intake):
-
+#intake g/m2-hr
+def C_plants(C_in, area, height, airchanges, intake, C_co2):
     vol = area*height
+    
+    #find volume consumed
+    mcons = intake*area/1000 
+    ncons = mcons/MWco2 #kmol/hr
+    vcons = ncons * mol_vol #m3/hr
 
-    vin = airchanges*vol/3600 #m3/s
+    vout = airchanges*area*height
+    vfeed = vout+vcons
 
-    mol_in = vin*(C_in/1e6)/mol_vol #kmol/s
+    #solve linear system
+    A = [[1,1],[440, C_co2]]
+    b = [[vfeed],[vfeed*C_in]]
+    X = np.linalg.inv(A).dot(b)
+    vair = X[0][0]
+    vco2 = X[1][0]
 
-    mass_in = mol_in*MWco2 #kg/s
-
-    mass_gen = intake*area/3600/1000 #kg/s
-
-    mass_out = mass_in - mass_gen #kg/s
-
-    mol_out = mass_out/MWco2 #kmol/s
-
-    C_plant = mol_out*mol_vol*1e6/vin 
-
-    velocity = vin/area #m/s
-
-    return C_plant, vol, velocity
+    velocity = (vout/3600)/area #m/s
+    #find outlet co2 ppm at st.st.
+    C_out = (vfeed*C_in - vcons*1e6)/vout
+    return C_out, vol, velocity, vair, vco2, mcons

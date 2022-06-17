@@ -22,6 +22,6 @@ epsk = (N2eps*co2eps)**0.5 #K
 omega = 1
 
 def Deff(T):
-    D = A*(T**1.5)*np.sqrt(1/co2M + 1/N2M) / (p * omega * sig**2)
+    D = float(A*(T**1.5)*np.sqrt(1/co2M + 1/N2M) / (p * omega * sig**2))
     return D
 
